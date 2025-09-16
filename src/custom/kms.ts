@@ -38,7 +38,6 @@ export default class KmsClient {
 			try {
 				const res = await this.apiClient.getKmsKeyByName(options);
 
-				console.log(res);
 				return res.key;
 			} catch (err) {
 				throw newInfisicalError(err);
