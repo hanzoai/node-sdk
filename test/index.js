@@ -1,17 +1,13 @@
 const { InfisicalSDK } = require("../lib");
 
 (async () => {
-	const client = new InfisicalSDK();
+  const client = new InfisicalSDK({
+    siteUrl: "https://bd87c650dfad.ngrok.app"
+  });
 
-	await client.auth().universalAuth.login({
-		clientId: "CLIENT_ID",
-		clientSecret: "CLIENT_SECRET"
-	});
+  await client.auth().awsIamAuth.login({
+    identityId: "8c7ed837-8246-4ec4-aa65-508cf1349529"
+  });
 
-	const secrets = await client.secrets().listSecrets({
-		environment: "dev",
-		workspaceId: "PROJECT_ID"
-	});
-
-	console.log(secrets.secrets);
+  console.log(client.auth().getAccessToken());
 })();
